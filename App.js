@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 // import { View } from 'react-native';
 // import Cabecalho from './components/Cabecalho';
 // import TelaCadastro from './telas/TelaCadastro';
@@ -8,6 +8,16 @@ import {Provider} from 'react-redux'
 import reduxThunk from 'redux-thunk';
 import UsuariosNavegacao from './navegacao/UsuariosNavegacao';
 import usuariosReducer from './store/usuarios-reducer';
+import {init} from './helpers/db';
+
+init()
+  .then(() => {
+    console.log("Base criada ou já existente!");
+  })
+  .catch((err) => {
+    console.log("Erro ao criar o banco!");
+    console.log(err);
+  })
 
 const rootReducer = combineReducers({
   usuarios: usuariosReducer
@@ -22,9 +32,6 @@ export default function App() {
         </Provider>
 
 }
-
-  //Movido para pasta store\\
-
 //   const[idUsuario, setIdUsuario] = useState();
 //   const[nomeUsuario, setNomeUsuario] = useState();
 //   const[telefoneUsuario, setTelefoneUsuario] = useState();
@@ -102,7 +109,7 @@ export default function App() {
 
 
 
-//APLICAÇÃO SOBRE O CLIMA/TEMPO -- COMENTAR PARA ALTERAR ENTRA CONTATO E CLIMA/TEMPO \\
+
 
 // import React, { useState } from 'react';
 // import { StyleSheet, TextInput, View, Button, FlatList, Text, Keyboard } from 'react-native';
